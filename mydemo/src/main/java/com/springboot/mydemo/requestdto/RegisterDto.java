@@ -2,7 +2,6 @@ package com.springboot.mydemo.requestdto;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +10,20 @@ import com.springboot.mydemo.model.enums.Enum.Gender;
 public class RegisterDto {
 	@NotNull
 	private int id;
+	
+	@Valid
+	@NotNull
+	private String firstName;
+	@NotNull
+	private String lastName;
+	@NotNull
+	private String userName;
+	@NotNull
+	private String password;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+
 	@Override
 	public String toString() {
 		return "RegisterDto [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
@@ -61,16 +74,4 @@ public class RegisterDto {
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	@Valid
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
-	@NotNull
-	private String userName;
-	@NotNull
-	private String password;
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
 }
