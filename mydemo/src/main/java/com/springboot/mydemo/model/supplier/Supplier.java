@@ -26,7 +26,7 @@ public class Supplier extends IbSupport{
 	
 	String Address;
 	
-	String
+
 	
 	
 
