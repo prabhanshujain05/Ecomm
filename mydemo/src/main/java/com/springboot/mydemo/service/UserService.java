@@ -8,6 +8,6 @@ import com.springboot.mydemo.requestdto.RegisterDto;
 
 public interface UserService {
 	public void userRegister(RegisterDto registerDto);
-	public void deleteUser(DeleteDto deleteDto);
-	public Users getUser(DeleteDto deleteDto);
+//	public void deleteUser(DeleteDto deleteDto);
+//	public Users getUser(DeleteDto deleteDto);
 }

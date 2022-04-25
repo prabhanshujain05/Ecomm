@@ -30,16 +30,16 @@ public class UserController {
 		System.out.print(registerDto);
 		this.userService.userRegister(registerDto);
 	}
-	@PutMapping("/delete")
-	public void deleteUser(@RequestBody DeleteDto deleteDto )
-	{
-		System.out.println(deleteDto);
-		userService.deleteUser(deleteDto);
-	}
-	@GetMapping("/getUser")
-	public ResponseEntity<Users> getUser(@RequestBody DeleteDto deleteDto)
-	{
-		Users user = userService.getUser(deleteDto);
-		return ResponseEntity.ok(user);
-	}
+//	@PutMapping("/delete")
+//	public void deleteUser(@RequestBody DeleteDto deleteDto )
+//	{
+//		System.out.println(deleteDto);
+//		userService.deleteUser(deleteDto);
+//	}
+//	@GetMapping("/getUser")
+//	public ResponseEntity<Users> getUser(@RequestBody DeleteDto deleteDto)
+//	{
+//		Users user = userService.getUser(deleteDto);
+//		return ResponseEntity.ok(user);
+//	}
 }
