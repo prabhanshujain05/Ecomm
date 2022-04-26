@@ -10,7 +10,9 @@ import com.springboot.mydemo.model.users.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer>  {
 
+	public Users findByEmailIdIgnoreCase(String emailId);
 	public Users findByUserNameIgnoreCase(String userName);
+	
 	
 //	@Modifying
 //    @Transactional
