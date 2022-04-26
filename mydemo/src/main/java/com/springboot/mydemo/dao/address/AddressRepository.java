@@ -7,4 +7,6 @@ import com.springboot.mydemo.model.address.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
+	Address findById(long id);
+
 }
