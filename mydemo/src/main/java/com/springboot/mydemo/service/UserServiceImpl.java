@@ -56,27 +56,7 @@ public class UserServiceImpl implements UserService {
 //		}
 //	}
 
-<<<<<<< HEAD
-	public void deleteUser(String userName) {
-		try {
-			userRepository.deleteUser(userName);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
 
-	@Override
-	public Users getUser(DeleteDto deleteDto) {
-	
-		Users user = userRepository.findByUserNameAndPassword(deleteDto.getUserName(),deleteDto.getPassword());
-		System.out.println(user);
-		if (user != null) {
-			return user;
-		}		
-		return null;
-	}
-	
-=======
 //	@Override
 //	public Users getUser(DeleteDto deleteDto) {
 //	
@@ -87,7 +67,7 @@ public class UserServiceImpl implements UserService {
 //		}		
 //		return null;
 //	}
->>>>>>> 552e48cea21bc515b138a04b074c3fa0ba620957
+
 }
 
 
