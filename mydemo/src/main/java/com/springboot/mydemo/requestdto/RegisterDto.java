@@ -2,7 +2,6 @@ package com.springboot.mydemo.requestdto;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
