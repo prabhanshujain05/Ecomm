@@ -5,4 +5,8 @@ public class Enum {
 		MALE,FEMALE;
 	}
 	
+	public enum AddressType{
+		PERMANENT,TEMPORARY;
+	}
+	
 }

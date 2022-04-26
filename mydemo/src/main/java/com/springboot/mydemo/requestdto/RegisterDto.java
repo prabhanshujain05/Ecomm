@@ -8,70 +8,110 @@ import javax.validation.constraints.NotNull;
 import com.springboot.mydemo.model.enums.Enum.Gender;
 
 public class RegisterDto {
-	@NotNull
-	private int id;
-	
-	@Valid
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
-	@NotNull
-	private String userName;
-	@NotNull
-	private String password;
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
 
-	@Override
-	public String toString() {
-		return "RegisterDto [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
-				+ userName + ", password=" + password + ", gender=" + gender + "]";
-	}
-	public RegisterDto(int id, String firstName, String lastName, String userName, String password, Gender gender) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
-		this.password = password;
-		this.gender = gender;
-	}
+	
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+
 	public String getUserName() {
 		return userName;
 	}
+
+	public RegisterDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "RegisterDto [id=" + id + ", userName=" + userName + ", userPassword=" + userPassword + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", contactNo=" + contactNo + ", emailId=" + emailId + "]";
+	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
-	public Gender getGender() {
-		return gender;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setGender(Gender gender) {
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	
+	public RegisterDto(int id, String userName, String userPassword, String firstName, String lastName,
+			String contactNo, String emailId,Gender gender) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.contactNo = contactNo;
+		this.emailId = emailId;
 		this.gender = gender;
 	}
+@NotNull
+	private int id;
+@NotNull
+	private String userName;
+@NotNull	
+	private String userPassword;
+@NotNull
+	private String firstName;
+@NotNull
+	private String lastName;
+@NotNull
+	private String contactNo;
+@NotNull
+	private String emailId;
+
+@Enumerated(EnumType.STRING)
+private Gender gender;
+
+public Gender getGender() {
+	return gender;
+}
+
+public void setGender(Gender gender) {
+	this.gender = gender;
+}
 }

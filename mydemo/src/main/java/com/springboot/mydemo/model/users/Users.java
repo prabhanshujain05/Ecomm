@@ -22,31 +22,20 @@ public class Users extends IbSupport {
 			)
 	private int id;
 	
+	private String userName;
+	
+	private String userPassword;
+	
 	private String firstName;
 	
 	private String lastName;
 	
-	private String userName;
+	private String contactNo;
 	
-	private String password;
+	private String emailId;
 	
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
-
-	public Users() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Users(int id, String firstName, String lastName, String userName, String password, Gender gender) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
-		this.password = password;
-		this.gender = gender;
-	}
 
 	public int getId() {
 		return id;
@@ -54,6 +43,22 @@ public class Users extends IbSupport {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
 	public String getFirstName() {
@@ -72,20 +77,20 @@ public class Users extends IbSupport {
 		this.lastName = lastName;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getContactNo() {
+		return contactNo;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public Gender getGender() {
@@ -95,6 +100,30 @@ public class Users extends IbSupport {
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	
+
+	public Users(int id, String userName, String userPassword, String firstName, String lastName, String contactNo,
+			String emailId, Gender gender) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.contactNo = contactNo;
+		this.emailId = emailId;
+		this.gender = gender;
+	}
+
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", userName=" + userName + ", userPassword=" + userPassword + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", contactNo=" + contactNo + ", emailId=" + emailId
+				+ ", gender=" + gender + "]";
+	}
 	
 }
