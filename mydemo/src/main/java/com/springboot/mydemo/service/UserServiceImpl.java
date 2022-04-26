@@ -20,50 +20,52 @@ public class UserServiceImpl implements UserService {
 		u.setFirstName(registerDto.getFirstName());
 		u.setLastName(registerDto.getLastName());
 		u.setUserName(registerDto.getUserName());
-		u.setPassword(registerDto.getPassword());
+		u.setContactNo(registerDto.getContactNo());
+		u.setEmailId(registerDto.getEmailId());
+		u.setUserPassword(registerDto.getUserPassword());
 		u.setGender(registerDto.getGender());
 		userRepository.save(u);
 	}
 
-	@Override
-	public void deleteUser(DeleteDto deleteDto) {
-		System.out.println(deleteDto);
-		Users user = this.findByUserName(deleteDto.getUserName());
-		System.out.println(user);
-		if (user != null) {
-			this.deleteUser(user.getUserName());
-			System.out.println("A called ----");
-		}
+//	@Override
+//	public void deleteUser(DeleteDto deleteDto) {
+//		System.out.println(deleteDto);
+//		Users user = this.findByUserName(deleteDto.getUserName());
+//		System.out.println(user);
+//		if (user != null) {
+//			this.deleteUser(user.getUserName());
+//			System.out.println("A called ----");
+//		}
+//
+//	}
 
-	}
+//	public Users findByUserName(String userName) {
+//		try {
+//			Users users = userRepository.findByUserNameIgnoreCase(userName);
+//			return users;
+//		} catch (Exception e) {
+//			return null;
+//		}
+//	}
 
-	public Users findByUserName(String userName) {
-		try {
-			Users users = userRepository.findByUserNameIgnoreCase(userName);
-			return users;
-		} catch (Exception e) {
-			return null;
-		}
-	}
+//	public void deleteUser(String userName) {
+//		try {
+//			userRepository.deleteUser(userName);
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}
+//	}
 
-	public void deleteUser(String userName) {
-		try {
-			userRepository.deleteUser(userName);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
-	@Override
-	public Users getUser(DeleteDto deleteDto) {
-	
-		Users user = userRepository.findByUserNameAndPassword(deleteDto.getUserName(),deleteDto.getPassword());
-		System.out.println(user);
-		if (user != null) {
-			return user;
-		}		
-		return null;
-	}
+//	@Override
+//	public Users getUser(DeleteDto deleteDto) {
+//	
+//		Users user = userRepository.findByUserNameAndPassword(deleteDto.getUserName(),deleteDto.getPassword());
+//		System.out.println(user);
+//		if (user != null) {
+//			return user;
+//		}		
+//		return null;
+//	}
 }
 
 
