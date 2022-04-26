@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.mydemo.requestdto.AddressDto;
-import com.springboot.mydemo.requestdto.AddressUpdateDto;
 import com.springboot.mydemo.service.AddressService;
 
 @RestController
