@@ -2,13 +2,13 @@ package com.springboot.mydemo.requestdto;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.springboot.mydemo.model.enums.Enum.Gender;
 
 public class RegisterDto {
+
 
 	
 	public int getId() {
@@ -27,6 +27,23 @@ public class RegisterDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	@NotNull
+	private int id;
+	
+	@Valid
+	@NotNull
+	private String firstName;
+	@NotNull
+	private String lastName;
+	@NotNull
+	private String userName;
+	@NotNull
+	private String password;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+
 
 	@Override
 	public String toString() {
@@ -90,6 +107,7 @@ public class RegisterDto {
 		this.emailId = emailId;
 		this.gender = gender;
 	}
+
 @NotNull
 	private int id;
 @NotNull

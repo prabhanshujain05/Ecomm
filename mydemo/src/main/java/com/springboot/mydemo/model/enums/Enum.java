@@ -4,5 +4,8 @@ public class Enum {
 	public enum Gender{
 		MALE,FEMALE;
 	}
+	public enum AddressType{
+		TEMPORARY,PERMANENT;
+	}
 	
 }

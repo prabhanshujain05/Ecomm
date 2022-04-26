@@ -1,6 +1,6 @@
 package com.springboot.mydemo.controller.users;
 
-import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,6 @@ import com.springboot.mydemo.requestdto.RegisterDto;
 import com.springboot.mydemo.service.UserService;
 
 @RestController
-
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
@@ -26,7 +25,7 @@ public class UserController {
 
 	@PostMapping("/register")
 	@Validated
-	public void userRegister(@RequestBody @Valid RegisterDto registerDto){
+	public void userRegister(@RequestBody RegisterDto registerDto){
 		System.out.print(registerDto);
 		this.userService.userRegister(registerDto);
 	}
