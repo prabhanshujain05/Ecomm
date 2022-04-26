@@ -1,13 +1,12 @@
 package com.springboot.mydemo.service;
 
-import org.springframework.http.ResponseEntity;
-
 import com.springboot.mydemo.model.users.Users;
-import com.springboot.mydemo.requestdto.DeleteDto;
 import com.springboot.mydemo.requestdto.RegisterDto;
+import com.springboot.mydemo.util.UserEmailAlreadyExistException;
+import com.springboot.mydemo.util.UserNameAlreadyExistException;
 
 public interface UserService {
-	public void userRegister(RegisterDto registerDto);
+	public Users userRegister(RegisterDto registerDto) throws UserEmailAlreadyExistException, UserNameAlreadyExistException, Exception;;
 //	public void deleteUser(DeleteDto deleteDto);
 //	public Users getUser(DeleteDto deleteDto);
 }
