@@ -11,6 +11,7 @@ import com.springboot.mydemo.requestdto.AddProductDto;
 import com.springboot.mydemo.requestdto.SupplierLoginDto;
 import com.springboot.mydemo.requestdto.SupplierRegisterDto;
 
+
 @Service
 public class SupplierServiceImpl implements SupplierService {
 	@Autowired
@@ -70,6 +71,34 @@ public class SupplierServiceImpl implements SupplierService {
 		product.setCategory(addProductDto.getCategory());
 		
 		productRepository.save(product);
+	}
+
+	@Override
+	public void updateProduct(int id,AddProductDto addProductDto) {
+		
+		Product product = productRepository.findById(id);
+		
+		product.setProductName(addProductDto.getProductName());
+		
+		product.setProductDescription(addProductDto.getProductDescription());
+		
+		product.setPrice(addProductDto.getPrice());
+		
+		product.setBrand(addProductDto.getBrand());
+		
+		product.setCategory(addProductDto.getCategory());
+		
+		product.setUpdatedAt(System.currentTimeMillis());
+		
+		productRepository.save(product);
+		
+		
+	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
