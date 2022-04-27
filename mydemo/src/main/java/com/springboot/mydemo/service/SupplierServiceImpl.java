@@ -3,14 +3,22 @@ package com.springboot.mydemo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.mydemo.dao.product.ProductRepository;
 import com.springboot.mydemo.dao.supplier.SupplierRepository;
+import com.springboot.mydemo.model.product.Product;
 import com.springboot.mydemo.model.supplier.Supplier;
+import com.springboot.mydemo.requestdto.AddProductDto;
+import com.springboot.mydemo.requestdto.SupplierLoginDto;
 import com.springboot.mydemo.requestdto.SupplierRegisterDto;
+
 
 @Service
 public class SupplierServiceImpl implements SupplierService {
 	@Autowired
 	SupplierRepository supplierRepository;
+	
+	@Autowired
+	ProductRepository productRepository;
 
 	@Override
 	public void supplierRegistration(SupplierRegisterDto supplierRegisterDto) {
@@ -29,5 +37,68 @@ public class SupplierServiceImpl implements SupplierService {
 		supplierRepository.save(supp);
 
 	}
+	
+	public Supplier supplierLogin(SupplierLoginDto supplierLoginDto) { 
+		
+		Supplier supp = supplierRepository.findBymailIdAndPassword(supplierLoginDto.getMailId(), supplierLoginDto.getPassword());
+		System.out.println(supp);
+		
+		if(supp!=null)
+		{
+			return supp;
+		}
+		
+		return null;
 
+	}
+
+	@Override
+	public void addProduct(String supplierId,AddProductDto addProductDto) {
+		Product product = new Product();
+		
+		System.out.println(addProductDto);
+		 
+		product.setProductName(addProductDto.getProductName());
+		
+		product.setProductDescription(addProductDto.getProductDescription());
+		
+		product.setPrice(addProductDto.getPrice());
+		
+		product.setSupplierId((Integer.parseInt(supplierId)));
+		
+		product.setBrand(addProductDto.getBrand());
+		
+		product.setCategory(addProductDto.getCategory());
+		
+		productRepository.save(product);
+	}
+
+	@Override
+	public void updateProduct(int id,AddProductDto addProductDto) {
+		
+		Product product = productRepository.findById(id);
+		
+		product.setProductName(addProductDto.getProductName());
+		
+		product.setProductDescription(addProductDto.getProductDescription());
+		
+		product.setPrice(addProductDto.getPrice());
+		
+		product.setBrand(addProductDto.getBrand());
+		
+		product.setCategory(addProductDto.getCategory());
+		
+		product.setUpdatedAt(System.currentTimeMillis());
+		
+		productRepository.save(product);
+		
+		
+	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

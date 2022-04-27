@@ -20,21 +20,21 @@ public class Supplier extends IbSupport{
 	private long id ;
 	
 	
-	String name;
+	private String name;
 	
-	String password;
+	private String password;
 	
 
 
-	long contactNumber;
+	private long contactNumber;
 	
-	String Address;
+	private String Address;
 	
-	String city;
+	private String city;
 	
-	int postalCode ;
+	private int postalCode ;
 	
-	String mailId;
+	private String mailId;
 
 	@Override
 	public String toString() {

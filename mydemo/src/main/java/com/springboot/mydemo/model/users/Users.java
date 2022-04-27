@@ -18,7 +18,7 @@ public class Users extends IbSupport {
 	@SequenceGenerator(
 			name = "user_generator",
 			sequenceName = "user_sequence",
-			initialValue = 1
+			initialValue = 100000
 			)
 	private int id;
 	
