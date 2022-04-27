@@ -3,12 +3,17 @@ package com.springboot.mydemo.controller.users;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.mydemo.model.users.Users;
+import com.springboot.mydemo.requestdto.DeleteDto;
 import com.springboot.mydemo.requestdto.RegisterDto;
 import com.springboot.mydemo.response.RestResponse;
 import com.springboot.mydemo.response.StatusResponse;
@@ -29,7 +34,7 @@ public class UserController {
 	@Validated
 	public RestResponse userRegister(@RequestBody RegisterDto registerDto){
 		try {
-//			this.userService.userRegister(registerDto);
+
 			return new StatusResponse(200,"Success !",this.userService.userRegister(registerDto));
 		}catch(UserEmailAlreadyExistException e){
 			logger.error(e.getMessage());
@@ -44,12 +49,14 @@ public class UserController {
 		
 		
 	}
-//	@PutMapping("/delete")
-//	public void deleteUser(@RequestBody DeleteDto deleteDto )
-//	{
-//		System.out.println(deleteDto);
-//		userService.deleteUser(deleteDto);
-//	}
+	
+	@PutMapping(value = "/updatedata", produces = "application/json")
+	public void updateUser(@RequestBody RegisterDto registerDto){
+		System.out.println(registerDto);
+		userService.updateUser(registerDto);
+	}
+	
+	
 //	@GetMapping("/getUser")
 //	public ResponseEntity<Users> getUser(@RequestBody DeleteDto deleteDto)
 //	{

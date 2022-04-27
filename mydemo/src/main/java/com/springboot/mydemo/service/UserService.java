@@ -6,7 +6,8 @@ import com.springboot.mydemo.util.UserEmailAlreadyExistException;
 import com.springboot.mydemo.util.UserNameAlreadyExistException;
 
 public interface UserService {
-	public Users userRegister(RegisterDto registerDto) throws UserEmailAlreadyExistException, UserNameAlreadyExistException, Exception;;
-//	public void deleteUser(DeleteDto deleteDto);
+	public Users userRegister(RegisterDto registerDto) throws UserEmailAlreadyExistException, UserNameAlreadyExistException, Exception;
+	public void updateUser(RegisterDto updateDto);
+	//	public void deleteUser(DeleteDto deleteDto);
 //	public Users getUser(DeleteDto deleteDto);
 }

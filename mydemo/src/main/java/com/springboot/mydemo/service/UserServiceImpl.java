@@ -71,6 +71,11 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	
+	//update the user record
+	public void updateUser(RegisterDto registerDto) {
+		
+	}
 //	@Override
 //	public void deleteUser(DeleteDto deleteDto) {
 //		System.out.println(deleteDto);
