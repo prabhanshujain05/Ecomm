@@ -3,23 +3,21 @@ package com.springboot.mydemo.controller.users;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.mydemo.model.users.Users;
-import com.springboot.mydemo.requestdto.DeleteDto;
+
 import com.springboot.mydemo.requestdto.RegisterDto;
 import com.springboot.mydemo.response.RestResponse;
 import com.springboot.mydemo.response.StatusResponse;
 import com.springboot.mydemo.service.UserService;
-import com.springboot.mydemo.util.UserEmailAlreadyExistException;
-import com.springboot.mydemo.util.UserNameAlreadyExistException;
+import com.springboot.mydemo.util.AlreadyExistException;
+import com.springboot.mydemo.util.HandleUserException;
+
 
 import ch.qos.logback.classic.Logger;
 
@@ -36,24 +34,32 @@ public class UserController {
 		try {
 
 			return new StatusResponse(200,"Success !",this.userService.userRegister(registerDto));
-		}catch(UserEmailAlreadyExistException e){
-			logger.error(e.getMessage());
-			return new StatusResponse(409,"Email Already Exist. Not able to insert !",null);
-		}catch(UserNameAlreadyExistException e) {
-			logger.error(e.getMessage());
-			return new StatusResponse(409,"User Name already exist ",null);		
-			}catch (Exception e) {
+		}catch(AlreadyExistException e){
 				logger.error(e.getMessage());
-				return new StatusResponse(500,"Error occurred, Server not responding. Please try after some time.", e);
-			} 
+				return new StatusResponse(409,e.getMessage(),null);
+			}catch(Exception e){
+				logger.error(e.getMessage());
+				return new StatusResponse(500,"Server Error, Please try after some time to update !",null);
+			}
 		
 		
 	}
 	
 	@PutMapping(value = "/updatedata", produces = "application/json")
-	public void updateUser(@RequestBody RegisterDto registerDto){
-		System.out.println(registerDto);
-		userService.updateUser(registerDto);
+	public RestResponse updateUser(@RequestBody RegisterDto updateData){
+			try{
+				return new StatusResponse(200,"Success !",this.userService.updateUser(updateData));
+			}catch(HandleUserException e){
+				logger.error(e.getMessage());
+				return new StatusResponse(404,e.getMessage(),null);
+			}catch(AlreadyExistException e){
+				logger.error(e.getMessage());
+				return new StatusResponse(409,e.getMessage(),null);
+			}catch(Exception e){
+				logger.error(e.getMessage());
+				return new StatusResponse(500,"Server Error, Please try after some time to update !",null);
+			}
+		
 	}
 	
 	

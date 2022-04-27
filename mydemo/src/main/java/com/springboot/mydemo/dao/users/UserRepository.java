@@ -12,6 +12,7 @@ public interface UserRepository extends JpaRepository<Users, Integer>  {
 
 	public Users findByEmailIdIgnoreCase(String emailId);
 	public Users findByUserNameIgnoreCase(String userName);
+
 	
 	
 //	@Modifying

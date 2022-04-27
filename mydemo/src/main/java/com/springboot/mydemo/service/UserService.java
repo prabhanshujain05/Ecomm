@@ -2,12 +2,12 @@ package com.springboot.mydemo.service;
 
 import com.springboot.mydemo.model.users.Users;
 import com.springboot.mydemo.requestdto.RegisterDto;
-import com.springboot.mydemo.util.UserEmailAlreadyExistException;
-import com.springboot.mydemo.util.UserNameAlreadyExistException;
+import com.springboot.mydemo.util.HandleUserException;
+
 
 public interface UserService {
-	public Users userRegister(RegisterDto registerDto) throws UserEmailAlreadyExistException, UserNameAlreadyExistException, Exception;
-	public void updateUser(RegisterDto updateDto);
+	public Users userRegister(RegisterDto registerDto) throws HandleUserException, Exception;
+	public Users updateUser(RegisterDto updateDto) throws HandleUserException, Exception;
 	//	public void deleteUser(DeleteDto deleteDto);
 //	public Users getUser(DeleteDto deleteDto);
 }

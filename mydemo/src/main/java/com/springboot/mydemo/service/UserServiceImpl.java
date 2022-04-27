@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 import com.springboot.mydemo.dao.users.UserRepository;
 import com.springboot.mydemo.model.users.Users;
 import com.springboot.mydemo.requestdto.RegisterDto;
-import com.springboot.mydemo.util.UserEmailAlreadyExistException;
-import com.springboot.mydemo.util.UserNameAlreadyExistException;
+import com.springboot.mydemo.util.AlreadyExistException;
+import com.springboot.mydemo.util.HandleUserException;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,20 +16,20 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 
 	@Override
-	public Users userRegister(RegisterDto registerDto) throws UserEmailAlreadyExistException, UserNameAlreadyExistException , Exception{
+	public Users userRegister(RegisterDto registerDto) throws   Exception{
 		
 		
 		
 		// validate email , must be unique
 		Users u2  = this.findByEmail(registerDto.getEmailId());
 				if(u2 != null) {
-					throw new UserEmailAlreadyExistException("User "+registerDto.getEmailId()+" already Exist");
+					throw new AlreadyExistException("User "+registerDto.getEmailId()+" already Exist");
 				}
 				
 				// validate userName , must be unique
 				u2 = this.findByUserName(registerDto.getUserName());
 				if(u2 != null) {
-					throw new UserNameAlreadyExistException("User "+registerDto.getUserName()+" already Exist");
+					throw new AlreadyExistException("User "+registerDto.getUserName()+" already Exist");
 				}
 				Users u = new Users();
 	 
@@ -70,11 +71,40 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+
 	
 	
 	//update the user record
-	public void updateUser(RegisterDto registerDto) {
-		
+	@Override
+	public Users updateUser(RegisterDto userData) throws HandleUserException, Exception{
+		Users updateRow = null;
+		updateRow = userRepository.getById(userData.getId());
+		System.out.println("Update Row ==="+updateRow);
+		if(updateRow==null){
+			throw new HandleUserException("User  doesn't Exist");
+		}
+		 updateRow = this.findByEmail(userData.getEmailId());
+				if(updateRow != null) {
+					throw new AlreadyExistException("User "+userData.getEmailId()+" already Exist");
+				}
+				
+				// validate userName , must be unique
+				updateRow = this.findByUserName(userData.getUserName());
+				if(updateRow != null) {
+					throw new AlreadyExistException("User "+userData.getUserName()+" already Exist");
+				}
+			 updateRow = new Users();
+	 
+			updateRow.setFirstName(userData.getFirstName());
+			updateRow.setLastName(userData.getLastName());
+			updateRow.setUserName(userData.getUserName());
+			updateRow.setContactNo(userData.getContactNo());
+			updateRow.setEmailId(userData.getEmailId());
+			updateRow.setUserPassword(userData.getUserPassword());
+			updateRow.setGender(userData.getGender()); 
+
+			userRepository.save(updateRow);
+			return updateRow;
 	}
 //	@Override
 //	public void deleteUser(DeleteDto deleteDto) {
