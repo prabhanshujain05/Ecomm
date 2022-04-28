@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.springboot.mydemo.model.users.Users;
 @Repository
-public interface UserRepository extends JpaRepository<Users, Integer>  {
+public interface UserRepository extends JpaRepository<Users, Long>  {
 
 	public Users findByEmailIdIgnoreCase(String emailId);
 	public Users findByUserNameIgnoreCase(String userName);
+	public Users findById(long id);
 
 	
 	

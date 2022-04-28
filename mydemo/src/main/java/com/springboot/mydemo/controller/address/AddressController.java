@@ -20,10 +20,10 @@ public class AddressController {
 	@Autowired
 	AddressService addressService;
 	
-	@PostMapping("/add/{userId}")
-	public void addAddress(@RequestBody AddressDto addressDto,@PathVariable String userId)
+	@PostMapping("/add/{fkUserId}")
+	public void addAddress(@RequestBody AddressDto addressDto,@PathVariable String fkUserId)
 	{
-		this.addressService.addAddress(addressDto,Long.parseLong(userId));
+		this.addressService.addAddress(addressDto,Long.parseLong(fkUserId));
 	}
 		
 	@PutMapping("/delete/{id}")

@@ -1,28 +1,57 @@
 package com.springboot.mydemo.service;
 
+import java.util.List;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.mydemo.controller.users.UserController;
 import com.springboot.mydemo.dao.address.AddressRepository;
+import com.springboot.mydemo.dao.users.UserRepository;
 import com.springboot.mydemo.model.address.Address;
+import com.springboot.mydemo.model.users.Users;
 import com.springboot.mydemo.requestdto.AddressDto;
+
+import ch.qos.logback.classic.Logger;
 @Service
 public class AddressServiceImpl implements AddressService {
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	AddressRepository addressRepository;
+	@Autowired
+	UserRepository userRepository;
+	
 	@Override
-	public void addAddress(AddressDto addressDto,long userId) {
-		System.out.println(addressDto);
-		Address address = new Address();
-		address.setUserId(userId);
+	public void addAddress(AddressDto addressDto,long id) {
+		logger.info(" "+addressDto);
 		
+		
+		
+		Users user = userRepository.findById(id);
+		if(user==null)
+		{
+			return;
+		}
+		
+		Address address = new Address();
 		address.setAddress1(addressDto.getAddress1());
 		address.setAddress2(addressDto.getAddress2());
 		address.setAddressType(addressDto.getAddressType());
 		address.setContactNo(addressDto.getContactNo());
 		address.setDistrict(addressDto.getDistrict());
 		address.setPostalCode(addressDto.getPostalCode());
-		addressRepository.save(address);
+		
+		List<Address> list = user.getAddress();
+		logger.info(" "+list);
+		list.add(addressRepository.save(address));
+		user.setAddress(list);
+		
+		userRepository.save(user);
+	
+		
+		
+		
 	}
 	@Override
 	public void deleteAddress(long id) {
@@ -39,7 +68,7 @@ public class AddressServiceImpl implements AddressService {
 		Address address = addressRepository.findById(id);
 		if(address!=null)
 		{
-			address.setUserId(addressDto.getUserId());
+		
 			address.setAddress1(addressDto.getAddress1());
 			address.setAddress2(addressDto.getAddress2());
 			address.setAddressType(addressDto.getAddressType());

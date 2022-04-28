@@ -2,35 +2,43 @@ package com.springboot.mydemo.requestdto;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.springboot.mydemo.model.address.Address;
 import com.springboot.mydemo.model.enums.Enum.Gender;
 
 public class RegisterDto {
 
-	
-	public int getId() {
+	@NotNull
+	private long id;
+	@NotNull
+	private String userName;
+	@NotNull
+	private String userPassword;
+	@NotNull
+	private String firstName;
+	@NotNull
+	private String lastName;
+	@NotNull
+	private String contactNo;
+	@NotNull
+	private String emailId;
+
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+
+	private Address address;
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	public String getUserName() {
 		return userName;
-	}
-
-	public RegisterDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "RegisterDto [id=" + id + ", userName=" + userName + ", userPassword=" + userPassword + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", contactNo=" + contactNo + ", emailId=" + emailId + "]";
 	}
 
 	public void setUserName(String userName) {
@@ -76,9 +84,38 @@ public class RegisterDto {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	
-	public RegisterDto(int id, String userName, String userPassword, String firstName, String lastName,
-			String contactNo, String emailId,Gender gender) {
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "RegisterDto [id=" + id + ", userName=" + userName + ", userPassword=" + userPassword + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", contactNo=" + contactNo + ", emailId=" + emailId
+				+ ", gender=" + gender + ", address=" + address + "]";
+	}
+
+	public RegisterDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public RegisterDto(@NotNull long id, @NotNull String userName, @NotNull String userPassword,
+			@NotNull String firstName, @NotNull String lastName, @NotNull String contactNo, @NotNull String emailId,
+			Gender gender, Address address) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -88,30 +125,12 @@ public class RegisterDto {
 		this.contactNo = contactNo;
 		this.emailId = emailId;
 		this.gender = gender;
+		this.address = address;
 	}
-@NotNull
-	private int id;
-@NotNull
-	private String userName;
-@NotNull	
-	private String userPassword;
-@NotNull
-	private String firstName;
-@NotNull
-	private String lastName;
-@NotNull
-	private String contactNo;
-@NotNull
-	private String emailId;
+	
+	
+	
+	
+	
 
-@Enumerated(EnumType.STRING)
-private Gender gender;
-
-public Gender getGender() {
-	return gender;
-}
-
-public void setGender(Gender gender) {
-	this.gender = gender;
-}
 }

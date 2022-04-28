@@ -43,44 +43,35 @@ public class Address extends IbSupport{
 			)
 
 	private long id;
-
+	
 	
 
-	private long userId;
-
-	
 
 	@Enumerated(EnumType.STRING)
 
 	private AddressType addressType;
 
 	
-
 	private String address1;
 
-	
 
 	private String address2;
 
-	
 
 	private String district;
 
-	
 
 	private int postalCode;
 
-	
 
 	private String contactNo;
 
-	
 
 	@Override
 
 	public String toString() {
 
-		return "Address [id=" + id + ", userId=" + userId + ", addressType=" + addressType + ", address1=" + address1
+		return "Address [id=" + id + ", addressType=" + addressType + ", address1=" + address1
 
 				+ ", address2=" + address2 + ", district=" + district + ", postalCode=" + postalCode + ", contactNo="
 
@@ -100,7 +91,7 @@ public class Address extends IbSupport{
 
 
 
-	public Address(long id, long userId, AddressType addressType, String address1, String address2, String district,
+	public Address(long id,  AddressType addressType, String address1, String address2, String district,
 
 			int postalCode, String contactNo) {
 
@@ -108,7 +99,7 @@ public class Address extends IbSupport{
 
 		this.id = id;
 
-		this.userId = userId;
+
 
 		this.addressType = addressType;
 
@@ -142,19 +133,7 @@ public class Address extends IbSupport{
 
 
 
-	public long getUserId() {
 
-		return userId;
-
-	}
-
-
-
-	public void setUserId(long userId) {
-
-		this.userId = userId;
-
-	}
 
 
 
