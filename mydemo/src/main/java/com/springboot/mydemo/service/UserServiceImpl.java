@@ -9,28 +9,46 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.mydemo.controller.users.UserController;
 import com.springboot.mydemo.dao.address.AddressRepository;
+import ch.qos.logback.classic.Logger;
+
 import com.springboot.mydemo.dao.users.UserRepository;
 import com.springboot.mydemo.model.address.Address;
 import com.springboot.mydemo.model.users.Users;
 import com.springboot.mydemo.requestdto.RegisterDto;
+import com.springboot.mydemo.response.RestResponse;
+import com.springboot.mydemo.response.StatusResponse;
 import com.springboot.mydemo.util.AlreadyExistException;
 import com.springboot.mydemo.util.HandleUserException;
 
-import ch.qos.logback.classic.Logger;
+
+import com.springboot.mydemo.validator.Validations;
 
 @Service
 public class UserServiceImpl implements UserService {
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
 	AddressRepository addressRepository;
 
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(UserController.class);
+	
 
 	@Override
-	public Users userRegister(RegisterDto registerDto) throws Exception {
-		System.out.println(registerDto);
-		logger.info(" " + registerDto);
+	public RestResponse userRegister(RegisterDto registerDto) throws Exception {
+
+		RestResponse rs = null;
+		// list of required parameter in this registration and can be change
+		String[] requestedArray = { "userName", "userPassword", "firstName", "lastName", "contactNo", "emailId",
+				"gender" };
+		Validations validations = new Validations();
+		// validate user with required fields
+		rs = validations.validate(registerDto, requestedArray);
+
+		if (rs != null) {
+			StatusResponse ds = (StatusResponse) rs;
+			logger.error("Signup validation Error " + ds.getMessage());
+			return new StatusResponse(400, ds.getMessage(), null);
+		}
 		// validate email , must be unique
 		Users u2 = this.findByEmail(registerDto.getEmailId());
 		if (u2 != null) {
@@ -42,12 +60,7 @@ public class UserServiceImpl implements UserService {
 		if (u2 != null) {
 			throw new AlreadyExistException("User " + registerDto.getUserName() + " already Exist");
 		}
-		
-		
 		Users u = new Users();
-
-		
-
 		u.setFirstName(registerDto.getFirstName());
 		u.setLastName(registerDto.getLastName());
 		u.setUserName(registerDto.getUserName());
@@ -68,12 +81,9 @@ public class UserServiceImpl implements UserService {
 		Address a = addressRepository.save(address);
 		List<Address> list = new ArrayList<>();
 		list.add(a);
-		
 		u.setAddress(list);
 		userRepository.save(u);
-		return u;
-	
-	
+		return new StatusResponse(202, "User Created Successfully !", u);
 	}
 
 	// to check if email is present or no

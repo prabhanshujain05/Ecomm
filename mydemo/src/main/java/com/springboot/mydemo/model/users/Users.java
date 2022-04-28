@@ -2,6 +2,7 @@ package com.springboot.mydemo.model.users;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,17 +29,17 @@ public class Users extends IbSupport {
 	private long id;
 	
 	private String userName;
-	
+
 	private String userPassword;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String contactNo;
-	
+
 	private String emailId;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
@@ -173,5 +174,4 @@ public class Users extends IbSupport {
 		this.address = address;
 	}
 
-	
 }
