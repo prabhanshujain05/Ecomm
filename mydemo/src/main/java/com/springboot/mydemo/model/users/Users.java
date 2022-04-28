@@ -1,5 +1,6 @@
 package com.springboot.mydemo.model.users;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,25 +16,21 @@ public class Users extends IbSupport {
 
 	@Id
 	@GeneratedValue(generator = "user_generator")
-	@SequenceGenerator(
-			name = "user_generator",
-			sequenceName = "user_sequence",
-			initialValue = 100000
-			)
+	@SequenceGenerator(name = "user_generator", sequenceName = "user_sequence", initialValue = 100000)
 	private int id;
-	
+
 	private String userName;
-	
+
 	private String userPassword;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String contactNo;
-	
+
 	private String emailId;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
@@ -125,5 +122,5 @@ public class Users extends IbSupport {
 				+ firstName + ", lastName=" + lastName + ", contactNo=" + contactNo + ", emailId=" + emailId
 				+ ", gender=" + gender + "]";
 	}
-	
+
 }

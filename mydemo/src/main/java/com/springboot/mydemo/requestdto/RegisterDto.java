@@ -3,13 +3,14 @@ package com.springboot.mydemo.requestdto;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.springboot.mydemo.model.enums.Enum.Gender;
 
 public class RegisterDto {
 
-	
 	public int getId() {
 		return id;
 	}
@@ -76,9 +77,9 @@ public class RegisterDto {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	
+
 	public RegisterDto(int id, String userName, String userPassword, String firstName, String lastName,
-			String contactNo, String emailId,Gender gender) {
+			String contactNo, String emailId, Gender gender) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -89,29 +90,42 @@ public class RegisterDto {
 		this.emailId = emailId;
 		this.gender = gender;
 	}
-@NotNull
+
 	private int id;
-@NotNull
+
+	@NotNull(message = "User Name required")
+	@NotEmpty(message = "User Name required")
 	private String userName;
-@NotNull	
+
+	@NotNull(message = "Password required")
+	@NotEmpty(message = "Password required")
 	private String userPassword;
-@NotNull
+
+	@NotNull(message = "Enter first name")
+	@NotEmpty(message = "Enter first name")
 	private String firstName;
-@NotNull
+
+	@NotNull(message = "Enter last name")
+	@NotEmpty(message = "Enter last name")
 	private String lastName;
-@NotNull
+
+	@NotNull(message = "Contact phone required")
+	@NotEmpty(message = "Contact phone required")
 	private String contactNo;
-@NotNull
+
+	@Email(message = "Valid email id required")
+	@NotNull(message = "Enter email Id")
+	@NotEmpty(message = "Enter email Id")
 	private String emailId;
 
-@Enumerated(EnumType.STRING)
-private Gender gender;
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
 
-public Gender getGender() {
-	return gender;
-}
+	public Gender getGender() {
+		return gender;
+	}
 
-public void setGender(Gender gender) {
-	this.gender = gender;
-}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 }
